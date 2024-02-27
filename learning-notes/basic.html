@@ -1,27 +1,144 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        Basic React learning 
-    </head>
-    <body>
-        <h4>Basic React App</h4>
+
+<head>
+    <title>Basic React learning </title>
+</head>
+
+<body>
+    <h2>Basics</h2>
+    <p>
+    <h3>Basic React App</h3>
+    <ul>
+        <li>Basic react app is installed using <b>npx create-react-app <i>"app-name"</i></b></li>
+        <li>It install test packages and web vital package by default, which leads to take more time to install</li>
+    </ul>
+    <h3>Basic Vite App</h3>
+    <ul>
+        <li>Vite react app is installed using <b>npm create vite@latest</b> and then providing required inputs</li>
+        <li>It installs only react and react-dom needed to begin with, and let user decide what else to install and thus
+            faster to install</li>
+    </ul>
+    </p>
+    <p>
+    <h2>React File Structure</h2>
+    <ul>
+        <li>Ultimately everything turns to html, css and js only. index.html in public directory is what finally runs.
+        </li>
+        <li>React related code is kept in src where index.js or index.jsx is called first and it used App.js or other
+            files</li>
+        <li>It is conventional to use jsx as extension if we return html from js file.</li>
+        <li>React only return one component so, all tags need to be covered with &lt;&gt;&lt;/&gt; tags.</li>
+    </ul>
+    </p>
+    <p>
+    <h2>How React Works</h2>
+    <p> It contains three parts 1. React Element that we build 2. A root container in HTML file 3. A function which add
+        our react element to root container in HTML</p>
+    </p>
+    <p>
+    <h2>State</h2>
+    <p>
+    <ul>
+        <li>In react we can not update the UI element on the go directly, for that we need state from the React</li>
+        <li>We use "{useState} from 'react'"</li>
+        <li>We cannot declare variable that needs to be updated in UI like let value = 0</li>
+        <li>The way to say it is const = useState()</li>
+        <li>cons [counter, setCounter] = useState(init_value), this is how its called, and counter and setCounter is
+            convention not a hard and fast rule</li>
+        <li>counter is variable and setCounter is a method</li>
+        <li>Updating variable is done using the method, in this case counter is updated using setCounter</li>
+        <li>setCounter(counter + 1), here counter is updated with value inside the parenthesis</li>
+        <li>Lets say if in a function add() we put three setCounter(counter + 1), then still only one operation will be
+            performed as react works in bundle form.</li>
+        <li>For avoiding the batching, we can use callback like setCounter((counter) => counter + 1), this will make
+            sure next like gets value after first</li>
+    </ul>
+    </p>
+    </p>
+    <p>
+    <h2>Virtual DOM, Firbraction and Reconcilation</h2>
+    <p>
+    <ul>
+        <li>We can look at react source code on github in facebook github repo.</li>
+        <li>React fibre is reimplementation of react, it renders the work in batch instead at isntance</li>
+        <li>For react fibre we need basic understanding of react and reconciliation</li>
+        <li>Reconciliation is the algorithm react uses to diff one element from another</li>
+    </ul>
+    </p>
+    <h2>Tailwind and Props</h2>
+    <ul>
+        <li>Go to tailwindcss.com and use install with vite for vite isntallation and simlar for others</li>
+        <li>some directives are placed in index.css from tailwind.</li>
+        <li>For tailwind we have some other values like htmlFor and className as for and class are reserved for JS.</li>
+        <li>Using tailwind, we can add components like Card and call them from index.js using <Card /></li>
+        <li>We can change the value here using props. Props is not defined by default</li>
+        <li>It is defined using function Card(props) { console.log(props) }</li>
+        <li>Wherever we call we can put the value like <Card username="suprabhat" /></li>
+        <li>We can access it in Card function usign props.username</li>
+        <li>We can also pass value as Card({username}) or Card({username = "default_value"})</li>
+    </ul>
+    <h1>bgChanger Application</h1>
+    <ul>
+        <li>Create an app with multiple buttons of different colors pressing which will lead to changing background color of whole page.</li>
+    </ul>
+    <h1>useEffect, useRef and useCallback</h1>
+    <ul>
+        <li>useCallback is a react hook that lets you cache a function defintion between re renders</li>
+        <li>it is called as useCallback(fn, dependencies) fn is the function we want to cache and dependencies are the values in array we want to pass in the function.</li>
+        <li>useEffect() hook is used to call a function in various scenarios</li>
+        <li>It runs when something changes on the basis of condition as useEffect{() => {}, [val1, val2]}, if any of these dependeny change, then funciton will run. (opposite of useCallback)</li>
+        <li>useRef - for using reference</li>
+    </ul>
+    <h1>custom hooks</h1>
+    <ul> 
+        <li>We can make our own hooks which will have same parameters as function and dependencies</li>
+        <p>function useCurrencyInfo(currency) {<br>
+            const [data, setData] = useState({});<br>
+            useEffect(() => {<br>
+                fetch(`https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/${currency}.json`)<br>
+                .then((res) => res.json())<br>
+                .then((res) => setData(res[currency]))<br>
+            }, [currency])<br>
+            console.log(data['inr'])<br>
+            console.log(typeof(data))<br>
+            return data<br>
+        }</p>
+    </ul>
+    <h2>React Router</h2>
+    <ul>
+        <li>We can create router like browser router using this.</li>
+    </ul>
+    <h2>Context API</h2>
+    <ul>
+        <li>It is a global state which is used by different components for sharing props</li>
+        <li>Create a context; Provide the context; Consume the context in child components</li>
+        <li>We create context.js file where we create context using const UserContext = React.createContext();</li>
+        <li>Then we apply a wrapper around it as contextProvider.jsx where we put the values we need to share</li>
         <p>
-            <ul>
-                <li>Basic react app is installed using <b>npx create-react-app <i>"app-name"</i></b></li>
-                <li>It install test packages and web vital package by default, which leads to take more time to install</li>
-            </ul>
-            <ul>
-                <li>Vite react app is installed using <b>npm create vite@latest</b> and then providing required inputs</li>
-                <li>It installs only react and react-dom needed to begin with, and let user decide what else to install and thus faster to install</li>
-            </ul>
+            const UserContextProvider = ({children}) => {<br>
+                const [user, setUser] = useState(null)<br>
+                return (<br>
+                    <UserContext.Provider value={{user, setUser}}><br>
+                        {children}<br>
+                    </UserContext.Provider><br>
+                )<br>
+            }<br>            
         </p>
+        <li>In our file App.jsx we add all the components which needs the value under ContextProvider eg - <ContextProvider><Login><Profile</Login></UserContextProvider></li>
+    </ul>
+    <h2>Context API 2</h2>
+    <ul>
+        <li>In the context.js file, we can provide value while running createContext() as createContext({key:val,key1:val1})</li>
+        <li>Instead of sending just context, we can export contextProvider itself from context.js file as export const ThemeProvider = ThemeContext.Provider;</li>
+        <li>We can export the function from this file so that everyone doesn't need to create the function</li>
         <p>
-            <ul>
-                <li>Ultimately everything turns to html, css and js only. index.html in public directory is what finally runs.</li>
-                <li>React related code is kept in src where index.js or index.jsx is called first and it used App.js or other files</li>
-                <li>It is conventional to use jsx as extension if we return html from js file.</li>
-                <li>React only return one component so, all tags need to be covered with &lt;&gt;&lt;/&gt; tags.</li>
-            </ul>
+            export default function useTheme() {<br>
+                return useContext(ThemeContext);<br>
+            }<br>
         </p>
-    </body>
+    </ul>
+    </p>
+</body>
+
 </html>
